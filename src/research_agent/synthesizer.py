@@ -2,14 +2,32 @@
 
 from __future__ import annotations
 
+from collections.abc import Callable
+from typing import Optional
+
 from research_agent.models import ResearchSection, Source
+
+SNIPPET_MAX_LENGTH: int = 200
+
+SummarizeFn = Callable[[str, list[Source]], str]
 
 
 class Synthesizer:
-    def __init__(self, summarize_fn=None):
-        self._summarize_fn = summarize_fn or self._default_summarize
+    """Combines sources into structured report sections."""
+
+    def __init__(self, summarize_fn: Optional[SummarizeFn] = None) -> None:
+        self._summarize_fn: SummarizeFn = summarize_fn or self._default_summarize
 
     def synthesize(self, topic: str, sources: list[Source]) -> list[ResearchSection]:
+        """Create report sections from the provided sources.
+
+        Args:
+            topic: The research topic.
+            sources: Fetched sources to synthesize.
+
+        Returns:
+            A list of ``ResearchSection`` instances.
+        """
         if not sources:
             return []
         section = ResearchSection(
@@ -21,5 +39,5 @@ class Synthesizer:
 
     @staticmethod
     def _default_summarize(topic: str, sources: list[Source]) -> str:
-        snippets = [s.content[:200] for s in sources]
+        snippets = [s.content[:SNIPPET_MAX_LENGTH] for s in sources]
         return f"Summary of {len(sources)} sources about {topic}: " + " | ".join(snippets)
