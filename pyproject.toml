@@ -2,10 +2,23 @@
 name = "research-agent"
 version = "0.1.0"
 description = "Agent that researches topics via web search, synthesizes information, and generates structured reports."
+license = {text = "MIT"}
+authors = [{name = "Marlon Barreto", email = "mbarretot@hotmail.com"}]
+keywords = ["AI-agent", "research", "LLM", "web-search"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.11",
+    "License :: OSI Approved :: MIT License",
+]
 requires-python = ">=3.11"
 dependencies = [
     "pydantic>=2.10.0",
 ]
+
+[project.urls]
+Homepage = "https://github.com/marlonbarreto-git/research-agent"
+Repository = "https://github.com/marlonbarreto-git/research-agent"
+Issues = "https://github.com/marlonbarreto-git/research-agent/issues"
 
 [project.optional-dependencies]
 dev = [
