@@ -1,6 +1,6 @@
-from unittest.mock import MagicMock, call
+from unittest.mock import MagicMock
 
-from research_agent.models import SearchResult, Source, ResearchSection
+from research_agent.models import SearchResult, ResearchSection
 from research_agent.pipeline import ResearchPipeline
 
 
